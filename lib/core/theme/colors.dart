@@ -8,5 +8,10 @@ sealed class AppColors{
   static const grey=Color(0xff959191);
   static final deepPurple=Colors.indigo[600];
   static final black=Colors.black;
-  static final grey400=Colors.grey.shade400;
+  static final grey400=Colors.grey[400];
+  ///
+  static final redAccent=Colors.redAccent;
+  static final yellowAccent=Colors.yellowAccent;
+  static final greenAccent=Colors.greenAccent;
+  static final pink=Colors.pinkAccent;
 }

@@ -19,7 +19,7 @@ class CenterPage extends StatelessWidget {
       children: [
         const Spacer(),
         SizedBox(
-          width: screenWidth / 3,
+          width: screenWidth / 3-100,
           height: 70,
           child: Center(
             child: Text(AppStrings.enter, style: AppTextStyle.bold),

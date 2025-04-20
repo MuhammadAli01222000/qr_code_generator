@@ -13,9 +13,9 @@ sealed class AppStrings{
   static const String flowcode="Flowcode" ;
   static const String enter= "Enter Your website URL";
   static const String your= "Your QR code will be generated automatically";
-  static const String pattern= "PATTERN";
-  static const String color= "COLOR";
-  static const String logo= "LOGO";
+  static const String pattern= "  PATTERN";
+  static const String color= "  COLOR";
+  static const String logo= "  LOGO";
   static const String png= "PNG";
   static const String jpg= "JPG";
   static const String svg= "SVG";

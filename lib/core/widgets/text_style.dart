@@ -7,4 +7,5 @@ sealed class AppTextStyle{
   static final watch=TextStyle(color: AppColors.blue3,fontSize: 15);
   static final centerText=TextStyle(fontSize: AppDimens.d15,color: AppColors.grey);
   static final leftText=TextStyle(fontSize: AppDimens.d15,color: AppColors.black);
+  static final inputStyle=TextStyle(fontSize: AppDimens.d15,color: AppColors.white);
 }
