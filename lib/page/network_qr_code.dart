@@ -14,11 +14,15 @@ class AssetQrGenerator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return QrImageView(
+      eyeStyle: QrEyeStyle(
+        eyeShape: QrEyeShape.circle,
+        color: Colors.red
+      ),
       data: qrData,
       version: QrVersions.auto,
       size: 200.0,
       embeddedImage: AssetImage(imgUrl),
-      embeddedImageStyle: const QrEmbeddedImageStyle(
+      embeddedImageStyle: QrEmbeddedImageStyle(
         size: Size(40, 40),
       ),
     );

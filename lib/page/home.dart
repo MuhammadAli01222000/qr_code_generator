@@ -14,7 +14,7 @@ import '../core/widgets/select.dart';
 import '../core/widgets/text_style.dart';
 import '../provider/app_provider.dart';
 import 'center_page.dart';
-const pdp="assets/telegram-peer-photo-size-2-5256190993164785864-1-0-0.jpg";
+const pdp="assets/img.png";
 class Home extends StatefulWidget {
   @override
   _HomeState createState() => _HomeState();
@@ -122,32 +122,17 @@ class _HomeState extends State<Home> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               if (_qrData.isNotEmpty)
-                                Container(
-                                  width: screenWidth/8,height: screenWidth/8,
-                                    child: Card(
-                                      child: AssetQrGenerator(qrData: "https://github.com/MuhammadAli01222000/provider", imgUrl: pdp),
-                                      // child: QrImageView(
-                                      //   embeddedImageStyle:
-                                      //       QrEmbeddedImageStyle(
-                                      //         size: Size(100, 150),
-                                      //       ),
-                                      //
-                                      //   dataModuleStyle: QrDataModuleStyle(
-                                      //     color: AppColors.white,
-                                      //   ),
-                                      //   backgroundColor:
-                                      //       AppColors.backroundColor,
-                                      //   eyeStyle: QrEyeStyle(
-                                      //     color: AppColors.white,
-                                      //     eyeShape: QrEyeShape.square,
-                                      //   ),
-                                      //   data: _qrData,
-                                      //   version: QrVersions.auto,
-                                      //   size: 100.0,
-                                      // ),
+                                SizedBox(
+                                  width: screenWidth / 8,
+                                  height: screenWidth / 8,
+                                  child: Card(
+                                    child: AssetQrGenerator(
+                                      qrData: _qrData,
+                                      imgUrl: pdp,
                                     ),
-
+                                  ),
                                 ),
+
                               AppDimens.h20,
                               ///pattern
                               Pattern(screenWidth: screenWidth),
@@ -160,8 +145,8 @@ class _HomeState extends State<Home> {
                               ///Logo
                               LogoWidget(screenWidth: screenWidth),
 
-                            Expanded(child: const   SelectFormat()),
-                              Expanded(child: Input(controller: _controller)),
+                            const   SelectFormat(),
+                               Input(controller: _controller),
                               const SizedBox(height: 20),
                               AppDimens.h20,
 
@@ -170,7 +155,6 @@ class _HomeState extends State<Home> {
                                 child: SizedBox(
                                  width: screenWidth-10,
                                   child: Consumer<AppProvider>(
-                                    child: Text(""),
                                     builder:(_,AppProvider,_){
                                       return  RightButton(
                                         onPressed: () {
