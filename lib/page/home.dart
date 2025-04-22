@@ -1,18 +1,20 @@
-import 'package:flutter/material.dart';
-import 'package:qr_code_generator/core/theme/dimens.dart';
-import 'package:qr_flutter/qr_flutter.dart';
 
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:qr_code_generator/core/theme/dimens.dart';
+import 'package:qr_code_generator/page/network_qr_code.dart';
 import '../core/theme/colors.dart';
 import '../core/theme/icon.dart';
 import '../core/widgets/input.dart';
-import '../core/theme/picture.dart';
 import '../core/theme/strings.dart';
 import '../core/widgets/button.dart';
 import '../core/widgets/drop_down_menu.dart';
 import '../core/widgets/list_tile.dart';
+import '../core/widgets/select.dart';
 import '../core/widgets/text_style.dart';
+import '../provider/app_provider.dart';
 import 'center_page.dart';
-
+const pdp="assets/telegram-peer-photo-size-2-5256190993164785864-1-0-0.jpg";
 class Home extends StatefulWidget {
   @override
   _HomeState createState() => _HomeState();
@@ -120,33 +122,33 @@ class _HomeState extends State<Home> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               if (_qrData.isNotEmpty)
-                                Expanded(
-                                  child: Center(
+                                Container(
+                                  width: screenWidth/8,height: screenWidth/8,
                                     child: Card(
-                                      child: QrImageView(
-                                        embeddedImageStyle:
-                                            QrEmbeddedImageStyle(
-                                              size: Size(50, 50),
-                                            ),
-
-                                        dataModuleStyle: QrDataModuleStyle(
-                                          color: AppColors.white,
-                                        ),
-                                        backgroundColor:
-                                            AppColors.backroundColor,
-                                        eyeStyle: QrEyeStyle(
-                                          color: AppColors.white,
-                                          eyeShape: QrEyeShape.square,
-                                        ),
-                                        data: _qrData,
-                                        version: QrVersions.auto,
-                                        size: 100.0,
-                                      ),
+                                      child: AssetQrGenerator(qrData: "https://github.com/MuhammadAli01222000/provider", imgUrl: pdp),
+                                      // child: QrImageView(
+                                      //   embeddedImageStyle:
+                                      //       QrEmbeddedImageStyle(
+                                      //         size: Size(100, 150),
+                                      //       ),
+                                      //
+                                      //   dataModuleStyle: QrDataModuleStyle(
+                                      //     color: AppColors.white,
+                                      //   ),
+                                      //   backgroundColor:
+                                      //       AppColors.backroundColor,
+                                      //   eyeStyle: QrEyeStyle(
+                                      //     color: AppColors.white,
+                                      //     eyeShape: QrEyeShape.square,
+                                      //   ),
+                                      //   data: _qrData,
+                                      //   version: QrVersions.auto,
+                                      //   size: 100.0,
+                                      // ),
                                     ),
-                                  ),
+
                                 ),
                               AppDimens.h20,
-
                               ///pattern
                               Pattern(screenWidth: screenWidth),
                               AppDimens.h20,
@@ -158,21 +160,28 @@ class _HomeState extends State<Home> {
                               ///Logo
                               LogoWidget(screenWidth: screenWidth),
 
-                            const   SelectFormat(),
+                            Expanded(child: const   SelectFormat()),
                               Expanded(child: Input(controller: _controller)),
                               const SizedBox(height: 20),
                               AppDimens.h20,
 
                               const Spacer(),
-                              SizedBox(
-                               width: screenWidth-10,
-                                child: RightButton(
-                                  onPressed: () {
-                                    setState(() {
-                                      _qrData = _controller.text.trim();
-                                    });
-                                  },
-                                  width: screenWidth / 3,
+                              Expanded(
+                                child: SizedBox(
+                                 width: screenWidth-10,
+                                  child: Consumer<AppProvider>(
+                                    child: Text(""),
+                                    builder:(_,AppProvider,_){
+                                      return  RightButton(
+                                        onPressed: () {
+                                          setState(() {
+                                            _qrData = _controller.text.trim();
+                                          });
+                                        },
+                                        width: screenWidth / 3,
+                                      );
+                                    } ,
+                                  ),
                                 ),
                               ),
                             ],
@@ -191,65 +200,3 @@ class _HomeState extends State<Home> {
   }
 }
 
-class SelectFormat extends StatelessWidget {
-  const SelectFormat({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Expanded(
-      child: Row(
-        mainAxisAlignment:
-            MainAxisAlignment.spaceBetween,
-        children: [
-          SizedBox(
-            width: 90,
-            height: 60,
-            child: Card(
-              child: Center(
-                child: Text(
-                  AppStrings.png,
-                  style: TextStyle(
-                    color: AppColors.white,
-                  ),
-                ),
-              ),
-              color: AppColors.blue3,
-            ),
-          ),
-          SizedBox(
-            width: 90,
-            height: 60,
-            child: Card(
-              child: Center(
-                child: Text(
-                  AppStrings.jpg,
-                  style: TextStyle(
-                    color: AppColors.white,
-                  ),
-                ),
-              ),
-              color: AppColors.blue3,
-            ),
-          ),
-          SizedBox(
-            width: 90,
-            height: 60,
-            child: Card(
-              child: Center(
-                child: Text(
-                  AppStrings.svg,
-                  style: TextStyle(
-                    color: AppColors.white,
-                  ),
-                ),
-              ),
-              color: AppColors.blue3,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}

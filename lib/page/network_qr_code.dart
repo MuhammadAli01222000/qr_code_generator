@@ -1,22 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';
-class NetworkQrGenerator extends StatelessWidget {
-  final String networkImgUrl;
-  const NetworkQrGenerator({
-    super.key,
-    required String qrData, required this.networkImgUrl,
-  }) : _qrData = qrData;
 
-  final String _qrData;
+class AssetQrGenerator extends StatelessWidget {
+  final String qrData;
+  final String imgUrl;
+
+  const AssetQrGenerator({
+    super.key,
+    required this.qrData,
+    required this.imgUrl,
+  });
 
   @override
   Widget build(BuildContext context) {
     return QrImageView(
-      data: networkImgUrl,
+      data: qrData,
       version: QrVersions.auto,
       size: 200.0,
-      embeddedImage: NetworkImage(networkImgUrl),
-      embeddedImageStyle: QrEmbeddedImageStyle(
+      embeddedImage: AssetImage(imgUrl),
+      embeddedImageStyle: const QrEmbeddedImageStyle(
         size: Size(40, 40),
       ),
     );
