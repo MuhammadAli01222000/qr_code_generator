@@ -8,4 +8,10 @@ class AppProvider extends ChangeNotifier {
     text = newText;
     notifyListeners();
   }
+  String updateImage(String newText) {
+    String res='';
+    res = newText;
+    notifyListeners();
+    return  res;
+  }
 }

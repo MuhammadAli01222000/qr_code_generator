@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:qr_code_generator/core/widgets/text_style.dart';
 
+import '../../provider/app_provider.dart';
 import '../theme/colors.dart';
 import '../theme/icon.dart';
 import '../theme/picture.dart';
@@ -13,6 +14,8 @@ class LogoWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var res = 'empty';
+    AppProvider appProvider = AppProvider(text: 'salom');
     return Container(
       width: screenWidth - 10,
       color: AppColors.blue2,
@@ -33,7 +36,20 @@ class LogoWidget extends StatelessWidget {
             enabled: false,
             value: "",
             label: "",
-            labelWidget: Row(children: [for (var o in listLogo) o]),
+            labelWidget: Row(
+              children: [
+                for (var o in listLogo)
+                  GestureDetector(
+                    child: o,
+                    onTap: () {
+                      print(res);
+                      res = appProvider.updateImage(
+                        "assets/logo_png/img_2.png",
+                      );
+                    },
+                  ),
+              ],
+            ),
           ),
         ],
       ),
